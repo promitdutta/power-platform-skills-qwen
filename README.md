@@ -1,6 +1,12 @@
-# Power Platform Skills
+# Power Platform Skills for Qwen Code
 
-Official Qwen Code extension for Microsoft Power Platform development by Microsoft.
+> **⚠️ Unofficial Community Extension**
+> 
+> This is an **unofficial, community-maintained** adaptation of the official [Microsoft Power Platform Skills](https://github.com/microsoft/power-platform-skills) repository, originally built for Claude Code and GitHub Copilot.
+> 
+> This extension has been adapted to work with **Qwen Code CLI**. It is **not** an official Microsoft product, **not** maintained by Microsoft, and **not** endorsed by Microsoft. It is created and maintained independently by [promitdutta](https://github.com/promitdutta).
+> 
+> The original skills are owned by Microsoft and licensed under MIT. This adaptation preserves the original skill content while updating tool names, variable references, and extension format for Qwen Code compatibility.
 
 ## Overview
 
@@ -360,7 +366,13 @@ This project welcomes contributions and suggestions. When contributing:
 
 ## License
 
-The code in this repo is licensed under the [MIT](LICENSE) license.
+The original skill content in this repository is licensed under the [MIT](LICENSE) license from Microsoft.
+
+This adaptation (extension structure, Qwen-specific configuration, and documentation updates) is provided as-is by the community maintainer.
+
+## Disclaimer
+
+This is an **unofficial community project**. It is not affiliated with, endorsed by, or sponsored by Microsoft Corporation. Microsoft Power Platform, Power Apps, Power Pages, Canvas Apps, and related trademarks are property of Microsoft Corporation. Use of these trademarks is for identification purposes only and follows Microsoft's [Trademark & Brand Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general).
 
 ## Trademarks
 

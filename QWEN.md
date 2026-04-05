@@ -1,5 +1,7 @@
 # Power Platform Skills — Extension Context
 
+> ⚠️ **Unofficial community adaptation.** Not an official Microsoft product. Adapted from [microsoft/power-platform-skills](https://github.com/microsoft/power-platform-skills) for Qwen Code by [promitdutta](https://github.com/promitdutta).
+
 This extension provides **28 skills** and **9 specialist agents** for building Power Platform applications using Qwen Code.
 
 ## Prerequisites
