@@ -1,0 +1,14 @@
+{
+    "name": "power-platform-skills",
+    "version": "2.0.0",
+    "description": "Microsoft Power Platform skills for Qwen Code. Build, test, and deploy Power Apps (Code Apps, Model-Driven, Canvas Apps) and Power Pages sites.",
+    "contextFileName": "QWEN.md",
+    "skills": "skills",
+    "agents": "agents",
+    "mcpServers": {
+        "playwright": {
+            "command": "node",
+            "args": ["${extensionPath}${/}scripts${/}launch-playwright-mcp.js"]
+        }
+    }
+}
