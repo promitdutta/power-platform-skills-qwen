@@ -1,25 +1,31 @@
 # Power Platform Skills — Extension Context
 
-This extension provides 28 skills for building Power Platform applications using Qwen Code.
+This extension provides **28 skills** and **9 specialist agents** for building Power Platform applications using Qwen Code.
 
-## Quick Start
+## Prerequisites
 
-1. **Install PAC CLI** (required for Code Apps, Model Apps, Power Pages):
-   ```bash
-   dotnet tool install -g Microsoft.PowerApps.CLI.Tool
-   ```
+### Required for All Skills
+- **Node.js 22+** — `winget install OpenJS.NodeJS.LTS`
+- **PAC CLI >= 2.3.1** — `dotnet tool install -g Microsoft.PowerApps.CLI.Tool`
+- **Git** — `winget install Git.Git`
 
-2. **Install .NET 10 SDK** (required for Canvas Apps):
-   Download from https://dotnet.microsoft.com/download/dotnet/10.0
+### Additional for Canvas Apps
+- **.NET 10 SDK** — https://dotnet.microsoft.com/download/dotnet/10.0
 
-3. **Use the skills** — Qwen will auto-discover them via the `/skills` command.
+### Additional for Power Pages
+- **Azure CLI** — `winget install Microsoft.AzureCLI`
+
+### Authentication
+Before using deployment skills:
+```powershell
+pwsh -NoProfile -Command "pac auth create"
+pwsh -NoProfile -Command "pac auth list"
+```
 
 ## Available Skills
 
-### Power Pages (11 skills)
-Create and deploy Power Pages Code Sites (SPAs) using React, Vue, Angular, or Astro.
-
-| skill | Use When |
+### Power Pages (11 Skills)
+| Skill | Use When |
 |-------|----------|
 | `create-site` | "Create a Power Pages site", "build a code site", "scaffold a website" |
 | `deploy-site` | "Deploy my Power Pages site", "upload site to Power Pages" |
@@ -33,10 +39,8 @@ Create and deploy Power Pages Code Sites (SPAs) using React, Vue, Angular, or As
 | `test-site` | "Test my deployed site", "verify site pages work" |
 | `audit-permissions` | "Audit site security", "check table permissions" |
 
-### Code Apps (13 skills)
-Build Power Apps code apps with React + Vite + TypeScript and Power Platform connectors.
-
-| skill | Use When |
+### Code Apps (13 Skills)
+| Skill | Use When |
 |-------|----------|
 | `create-code-app` | "Create a new code app", "scaffold a Power Apps code app" |
 | `deploy` | "Deploy my code app", "push to Power Platform" |
@@ -52,38 +56,45 @@ Build Power Apps code apps with React + Vite + TypeScript and Power Platform con
 | `add-mcscopilot` | "Add Copilot Studio agent connector" |
 | `add-connector` | "Add any other Power Platform connector" |
 
-### Model Apps (1 skill)
-Build generative pages (genux) for model-driven Power Apps.
-
-| skill | Use When |
+### Model Apps (1 Skill)
+| Skill | Use When |
 |-------|----------|
-| `genpage` | "Build a generative page", "create genux page", "add page to model-driven app" |
+| `genpage` | "Build a generative page", "create genux page", "page in model-driven app" |
 
-### Canvas Apps (3 skills)
-Author Canvas Apps via Canvas Authoring MCP server and PA YAML.
-
-| skill | Use When |
+### Canvas Apps (3 Skills)
+| Skill | Use When |
 |-------|----------|
 | `configure-canvas-mcp` | "Configure Canvas Authoring MCP server" |
-| `generate-canvas-app` | "Create a Canvas App", "generate canvas app from description" |
-| `edit-canvas-app` | "edit my Canvas App", "modify existing canvas app" |
+| `generate-canvas-app` | "Create a Canvas App", "generate Canvas App from description" |
+| `edit-canvas-app` | "Edit my Canvas App", "modify existing Canvas App" |
 
 ## Key Conventions
 
-- **Connector-First**: All external data access MUST use Power Platform connectors. Direct HTTP calls (`fetch`, `axios`) will fail in production.
-- **Memory Bank**: Each project gets a `memory-bank.md` file that tracks progress across sessions.
-- **Windows CLI**: The `pac` CLI must be invoked via `pwsh -NoProfile -Command "pac ..."` on Windows.
-- **Build Before Deploy**: Always run `npm run build` before `pac code push` or `pac pages upload-code-site`.
+### Connector-First
+All external data access MUST use Power Platform connectors. Direct HTTP calls (`fetch`, `axios`, Graph API) will fail at runtime in the Power Platform sandbox.
 
-## File Structure
+### Windows CLI
+The `pac` CLI must be invoked via PowerShell:
+```powershell
+pwsh -NoProfile -Command "pac code push"
+pwsh -NoProfile -Command "pac pages upload-code-site"
+```
+
+### Build Before Deploy
+Always run `npm run build` before `pac code push` or `pac pages upload-code-site`. Never skip the build step.
+
+### Memory Bank
+Each project gets a `memory-bank.md` file that tracks progress across sessions. Skills read this at start and update after major steps.
+
+## Extension Structure
 
 ```
 skills/
-├── power-pages/     ← Power Pages skills (11 skills)
-├── code-apps/       ← Code Apps skills (13 skills)
-├── model-apps/      ← Model Apps skills (1 skill)
-└── canvas-apps/     ← Canvas Apps skills (3 skills)
-agents/              ← Specialist agent definitions
-scripts/             ← Utility scripts (validation, auditing, etc.)
+├── power-pages/     ← 11 skills for Power Pages
+├── code-apps/       ← 13 skills for Code Apps
+├── model-apps/      ← 1 skill for Model-Driven
+└── canvas-apps/     ← 3 skills for Canvas Apps
+agents/              ← 9 specialist agents
+scripts/             ← Utility scripts and tests
 references/          ← Technical reference documents
 ```
